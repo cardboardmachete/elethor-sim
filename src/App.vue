@@ -18,10 +18,16 @@
       <h4 class="title is-4">
         Options
       </h4>
-      <label class="checkbox">
-        <input type="checkbox" v-model="incursion">
-        Incursion?
-      </label>
+      <div class="level">
+        <div class="level-right">
+          <div class="level-item">
+            <label class="checkbox">
+              <input type="checkbox" v-model="incursion">
+              Incursion?
+            </label>
+          </div>
+        </div>
+      </div>
       <button type="submit" class="button is-large is-success">
         Simulate
       </button>
