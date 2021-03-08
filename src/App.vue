@@ -71,7 +71,7 @@ export default {
       const body = new FormData(this.$refs.form);
       body.set('options[incursion]', this.incursion);
 
-      fetch('http://elethor.local/api/simulate', {
+      fetch('https://elethor.com/api/simulate', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

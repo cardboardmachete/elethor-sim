@@ -6,7 +6,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input" type="number" :name="name" :value="1">
+          <input class="input" type="number" :name="name" :value="0">
         </p>
       </div>
     </div>
