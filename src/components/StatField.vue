@@ -6,7 +6,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input" type="number" :name="name" :value="0">
+          <input class="input" :name="name" :value="value">
         </p>
       </div>
     </div>
@@ -18,6 +18,7 @@ export default {
   props: {
     name: String,
     label: String,
+    value: Number,
   },
 };
 </script>

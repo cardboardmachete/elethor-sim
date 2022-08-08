@@ -13,6 +13,7 @@ module.exports = {
     parser: 'babel-eslint',
   },
   rules: {
+    'indent': ['error', 2],
     'vue/html-indent': ['error', 2],
     'vue/script-indent': ['error', 2],
     'vue/max-attributes-per-line': ['error', {
