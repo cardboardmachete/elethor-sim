@@ -1,7 +1,7 @@
 export default [
   {
     name: 'T9E20',
-    level: 170,
+    level: 145,
     attributes: {
       fortitude: 16180,
       speed: 1638,
@@ -14,6 +14,23 @@ export default [
       puncture: 4,
       damage: 2.68,
       health_multiplier: 1.386,
+    },
+  },
+  {
+    name: 'T7E10',
+    level: 100,
+    attributes: {
+      fortitude: 2943,
+      speed: 638,
+      savagery: 2140,
+      pierce: 1026,
+      armor: 906,
+      ignore_damage_reduction: 0.46,
+      min_damage: 0.0,
+      max_damage: 0.09,
+      puncture: 4,
+      damage: 2.29,
+      health_multiplier: 1.059,
     },
   },
 ];
