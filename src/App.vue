@@ -85,6 +85,12 @@
               Multikill Buff
             </label>
           </div>
+          <div class="level-item">
+            <label class="checkbox">
+              <input type="checkbox" v-model="scaling">
+              New SVG/FTD Scaling
+            </label>
+          </div>
         </div>
       </div>
       <button type="submit" class="button is-large is-success">
@@ -107,7 +113,8 @@ import presets from './helpers/presets';
 
 export default {
   data: () => ({
-    multikill: false,
+    multikill: true,
+    scaling: false,
     playerId: null,
     playerStats: [
       { label: 'Level', name: 'level', value: 1 },
@@ -156,6 +163,8 @@ export default {
     submit() {
       const body = new FormData(this.$refs.form);
       body.set('options[multikill]', this.multikill);
+      body.set('options[scaling]', this.scaling);
+
       if (this.playerId) {
         body.set('player.id', this.playerId);
       }
