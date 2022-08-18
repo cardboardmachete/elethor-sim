@@ -17,6 +17,23 @@ export default [
     },
   },
   {
+    name: 'T8E9',
+    level: 145,
+    attributes: {
+      fortitude: 3830,
+      speed: 862,
+      savagery: 4230,
+      pierce: 1634,
+      armor: 1890,
+      ignore_damage_reduction: 0.95,
+      min_damage: 0.0,
+      max_damage: 0.0,
+      puncture: 4,
+      damage: 2.20,
+      health_multiplier: 1.250,
+    },
+  },
+  {
     name: 'T7E10',
     level: 100,
     attributes: {
@@ -31,6 +48,23 @@ export default [
       puncture: 4,
       damage: 2.29,
       health_multiplier: 1.059,
+    },
+  },
+  {
+    name: 'T6E12',
+    level: 100,
+    attributes: {
+      fortitude: 2525,
+      speed: 496,
+      savagery: 2144,
+      pierce: 1216,
+      armor: 1055,
+      ignore_damage_reduction: 0.20,
+      min_damage: 0.0,
+      max_damage: 0.0,
+      puncture: 4,
+      damage: 1.70,
+      health_multiplier: 1.0,
     },
   },
 ];

@@ -169,7 +169,7 @@ export default {
         body.set('player.id', this.playerId);
       }
 
-      fetch('http://elethor.local/api/simulate', {
+      fetch('https://elethor.com/api/simulate', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -187,7 +187,7 @@ export default {
         });
     },
     getMonsters() {
-      fetch('http://elethor.local/api/sim/monsters')
+      fetch('https://elethor.com/api/sim/monsters')
         .then((r) => r.json())
         .then((data) => {
           this.monsters = data;
