@@ -1,23 +1,23 @@
 <template>
-  <table class="table is-narrow is-fullwidth is-size-7">
+  <table class="table is-narrow is-fullwidth is-size-7 bg-slate-700 text-slate-50">
     <tbody>
       <tr>
-        <th />
-        <th>TOTAL</th>
-        <th>AVG</th>
+        <td />
+        <td class="font-bold">TOTAL</td>
+        <td class="font-bold">AVG</td>
       </tr>
       <tr>
-        <th>Damage</th>
+        <td class="font-bold">Damage</td>
         <td>{{ log.totalDamage.toLocaleString() }}</td>
         <td>{{ avgTotalDamage.toLocaleString() }}</td>
       </tr>
       <tr>
-        <th>Puncture</th>
+        <td class="font-bold">Puncture</td>
         <td>{{ log.totalPuncture.toLocaleString() }}</td>
         <td>{{ avgTotalPuncture.toLocaleString() }}</td>
       </tr>
       <tr v-if="log.totalReflect > 0">
-        <th>Reflect</th>
+        <td class="font-bold">Reflect</td>
         <td>{{ log.totalReflect.toLocaleString() }}</td>
         <td>{{ avgTotalReflect.toLocaleString() }}</td>
       </tr>

@@ -1,16 +1,16 @@
 <template>
-  <table class="table is-narrow is-fullwidth is-size-7">
+  <table class="table is-narrow is-fullwidth is-size-7 bg-slate-700 text-slate-50">
     <tbody>
       <tr>
-        <th>Ability</th>
-        <th># of Procs</th>
+        <td class="font-bold">Ability</td>
+        <td class="font-bold"># of Procs</td>
       </tr>
       <tr>
-        <th>Incapacitate</th>
+        <td class="font-bold">Incapacitate</td>
         <td>{{ log.incapacitate }}</td>
       </tr>
       <tr v-if="log.frenzyBoost > 0">
-        <th>Frenzy Boost</th>
+        <td class="font-bold">Frenzy Boost</td>
         <td>+{{ log.frenzyBoost }}</td>
       </tr>
     </tbody>

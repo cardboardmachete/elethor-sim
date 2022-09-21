@@ -1,20 +1,18 @@
 <template>
-  <div class="section">
-    <div class="columns">
-      <div class="column">
-        <h5 class="title is-5">
+  <div>
+    <div class="flex space-x-5">
+      <div class="basis-1/3">
+        <h5 class="text-xl font-semibold mb-1">
           Player Stats
         </h5>
         <StatsTable :stats="player" />
-      </div>
-      <div class="column">
-        <h5 class="title is-5">
+        <h5 class="text-xl font-semibold mb-1">
           Monster Stats
         </h5>
         <StatsTable :stats="monster" />
       </div>
-      <div class="column">
-        <h5 class="title is-5">
+      <div class="basis-1/3">
+        <h5 class="text-xl font-semibold mb-1">
           Combat Log
         </h5>
         <p class="has-text-weight-bold">
@@ -30,13 +28,14 @@
         <p class="has-text-weight-bold">
           Monster: {{ log.final.monster.finalHealth }} / {{ log.final.monster.maxHealth }}
         </p>
-        <h5 class="title is-5 my-2">
+        <h5 class="text-xl font-semibold my-2">
           BREAKDOWN
         </h5>
         <DamageTable :log="log" />
         <ProcTable :log="log" />
-
-        <h5 class="title is-5 my-2">
+      </div>
+      <div class="basis-1/4 ml-auto max-h-[65vh] overflow-y-auto">
+        <h5 class="text-xl font-semibold my-2">
           DETAILS
         </h5>
         <ul>

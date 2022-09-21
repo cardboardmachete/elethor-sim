@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   root: true,
   env: {
     node: true,
@@ -24,6 +24,7 @@ module.exports = {
       },
     }],
     'vue/no-v-html': 'off',
+    'vue/script-setup-uses-vars': 'off',
     'vue/require-default-prop': 'off',
     'vue/order-in-components': ['error', {
       order: [

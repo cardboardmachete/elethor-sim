@@ -1,120 +1,126 @@
 <template>
-  <div class="container section">
-    <h1 class="title is-1">
-      The Simulator
-    </h1>
-    <p class="subtitle ml-3">
-      'El Grande' Edition
-    </p>
-    <div class="content">
-      <h5>Helpful Hints</h5>
-      <ul>
-        <li>
-          Values that would be percentages (like IDR) should be input as decimals. 80% -> 0.8.
-        </li>
-        <li>
-          Providing a Player ID will silently calculate everything with that player's corporation buffs, companions, masteries, compendium, and current injections.
-        </li>
-      </ul>
+  <div class="bg-slate-800 min-h-screen text-slate-50 pt-12 flex flex-col">
+    <div class="max-w-5xl mx-auto grow">
+      <div class="text-center">
+      <h1 class="text-4xl font-bold">
+        The Simulator
+      </h1>
+      <p class="text-slate-200 font-light text-xl ml-3">
+        'Darknight' Edition
+      </p>
+      </div>
+
+      <div class="mt-3">
+        <h5 class="text-lg font-semibold">
+          Helpful Hints
+        </h5>
+        <ul class="list-disc ml-5">
+          <li>
+            Values that would be percentages (like IDR) should be input as decimals. 80% -> 0.8.
+          </li>
+          <li>
+            Providing a Player ID will silently calculate everything with that player's corporation buffs, companions, masteries, compendium, and current injections.
+          </li>
+        </ul>
+      </div>
+
+      <form ref="form" class="mt-4" @submit.prevent="submit">
+        <div class="flex space-x-5">
+          <div class="basis-1/2">
+            <h4 class="text-2xl font-semibold uppercase text-center mb-4 border-b border-slate-500">
+              Player
+            </h4>
+            <div class="field is-horizontal">
+              <div class="field-label is-normal grow-[2]">
+                <label class="font-bold">Preset</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p class="control select">
+                    <select @input="setPreset" class="!bg-slate-200">
+                      <option />
+                      <option v-for="preset in presets" :key="preset.name">
+                        {{ preset.name }}
+                      </option>
+                    </select>
+                  </p>
+                </div>
+                <div class="field is-narrow">
+                  <p class="control">
+                    <input type="text" class="input bg-slate-200" placeholder="Player ID" v-model="playerId">
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <StatContainer :stats="playerStats" source="player" />
+          </div>
+          <div class="basis-1/2">
+            <h4 class="text-2xl font-semibold uppercase text-center mb-4 border-b border-slate-500">
+              Monster
+            </h4>
+            <div class="field is-horizontal">
+              <div class="field-label is-normal grow-[2]">
+                <label class="font-bold">Monster</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p class="control select">
+                    <select @input="setMonster" class="!bg-slate-200">
+                      <option />
+                      <option v-for="monster in monsters" :key="monster.id">
+                        {{ monster.name }}
+                      </option>
+                    </select>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <StatContainer :stats="monsterStats" source="monster" />
+          </div>
+        </div>
+
+        <div class="mt-5">
+        <h4 class="text-2xl font-semibold">
+          Options
+        </h4>
+        <div class="level">
+          <div class="level-right">
+            <div class="level-item">
+              <label class="cursor-pointer inline-block leading-5 relative hover:underline">
+                <input type="checkbox" v-model="multikill">
+                Multikill Buff
+              </label>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <button type="submit" class="button is-large is-success mt-3">
+          Simulate
+        </button>
+      </form>
+      <Results
+        v-if="playerResults"
+        :player="playerResults"
+        :monster="monsterResults"
+        :log="combatLog"
+      />
     </div>
-
-    <form ref="form" class="form mt-6" @submit.prevent="submit">
-      <div class="columns">
-        <div class="column">
-          <h4 class="title is-4">
-            Player
-          </h4>
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Preset</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control select">
-                  <select @input="setPreset">
-                    <option />
-                    <option v-for="preset in presets" :key="preset.name">
-                      {{ preset.name }}
-                    </option>
-                  </select>
-                </p>
-              </div>
-              <div class="field is-narrow">
-                <p class="control">
-                  <input type="text" class="input" placeholder="Player ID" v-model="playerId">
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <StatContainer :stats="playerStats" source="player" />
-        </div>
-        <div class="column">
-          <h4 class="title is-4">
-            Monster
-          </h4>
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Monster</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control select">
-                  <select @input="setMonster">
-                    <option />
-                    <option v-for="monster in monsters" :key="monster.id">
-                      {{ monster.name }}
-                    </option>
-                  </select>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <StatContainer :stats="monsterStats" source="monster" />
-        </div>
-      </div>
-      <h4 class="title is-4">
-        Options
-      </h4>
-      <div class="level">
-        <div class="level-right">
-          <div class="level-item">
-            <label class="checkbox">
-              <input type="checkbox" v-model="multikill">
-              Multikill Buff
-            </label>
-          </div>
-          <div class="level-item">
-            <label class="checkbox">
-              <input type="checkbox" v-model="scaling">
-              New SVG/FTD Scaling
-            </label>
-          </div>
-        </div>
-      </div>
-      <button type="submit" class="button is-large is-success">
-        Simulate
-      </button>
-    </form>
-    <Results
-      v-if="playerResults"
-      :player="playerResults"
-      :monster="monsterResults"
-      :log="combatLog"
-    />
+    <Footer class="mt-auto" />
   </div>
 </template>
 
 <script>
-import StatContainer from './components/StatContainer.vue'
+import StatContainer from './components/StatContainer.vue';
+import Footer from './components/Footer.vue';
 import Results from './components/Results.vue';
 import presets from './helpers/presets';
 
 export default {
   data: () => ({
     multikill: true,
-    scaling: false,
     playerId: null,
     playerStats: [
       { label: 'Level', name: 'level', value: 1 },
@@ -139,7 +145,6 @@ export default {
       { label: 'Armor', name: 'armor', value: 1 },
       { label: 'DR', name: 'damage_reduction', value: 0 },
       { label: 'Puncture', name: 'puncture', value: 4 },
-      { label: 'Health Multi', name: 'health_multiplier', value: 1 },
     ],
     presets,
     monsters: [],
@@ -163,10 +168,9 @@ export default {
     submit() {
       const body = new FormData(this.$refs.form);
       body.set('options[multikill]', this.multikill);
-      body.set('options[scaling]', this.scaling);
 
       if (this.playerId) {
-        body.set('player.id', this.playerId);
+        body.set('player[id]', this.playerId);
       }
 
       fetch('https://elethor.com/api/simulate', {
@@ -230,6 +234,7 @@ export default {
   components: {
     StatContainer,
     Results,
+    Footer,
   },
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <table class="table is-narrow is-fullwidth is-size-7">
+  <table class="table is-narrow is-fullwidth is-size-7 bg-slate-700 text-slate-50">
     <tr>
       <td>
-        <span class="has-text-weight-bold">ATTACK SPEED</span>
+        <span class="font-bold">ATTACK SPEED</span>
       </td>
       <td>
         <span>{{ stats.attackSpeed }}</span>
@@ -10,7 +10,7 @@
     </tr>
     <tr v-if="stats.maxHealth">
       <td>
-        <span class="has-text-weight-bold">HEALTH</span>
+        <span class="font-bold">HEALTH</span>
       </td>
       <td>
         <span>{{ stats.maxHealth.toLocaleString() }}</span>
@@ -18,7 +18,7 @@
     </tr>
     <tr v-for="(stat, attr) in validAttributes" :key="attr">
       <td v-if="!(effects.includes(attr) && stat === 0)">
-        <span class="has-text-weight-bold">{{ attr.replace(/_/g, ' ').toUpperCase() }}</span>
+        <span class="font-bold">{{ attr.replace(/_/g, ' ').toUpperCase() }}</span>
       </td>
       <td v-if="!(effects.includes(attr) && stat === 0)">
         <span>{{ stat.toLocaleString() }}</span>
