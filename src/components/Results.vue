@@ -47,6 +47,7 @@
               'has-text-danger': entry.startsWith('The monster did'),
               'has-text-success mb-3 has-text-weight-bold': entry.startsWith('You killed'),
               'has-text-info': entry.startsWith('You reflected'),
+              'text-purple-300': entry.startsWith('You punctured'),
             }"
             v-html="entry"
           />
