@@ -4,7 +4,7 @@ services:
   elethorsim:
     build: .
     ports:
-      - 3000:3000
+      - 3001:3000
       - 24678:24678
     volumes:
       - '.:/app'
@@ -12,4 +12,4 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     tty: true
-    command: /bin/sh -c "yarn dev"
+    # command: /bin/sh -c "yarn dev"

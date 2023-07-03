@@ -90,8 +90,22 @@
             <div class="level-item">
               <label class="cursor-pointer inline-block leading-5 relative hover:underline">
                 <input type="checkbox" v-model="multikill">
-                Multikill Buff
+                Multikill Enabled
               </label>
+            </div>
+            <div class="level-item">
+              <div class="field">
+                <div class="field-label is-normal text-left">
+                  <label :for="name" class="font-semibold">Multikill Buff (0.1 (10%) is normal)</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input bg-slate-200 shadow-inner" v-model="multikillBuff">
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -121,6 +135,7 @@ import presets from './helpers/presets';
 export default {
   data: () => ({
     multikill: true,
+    multikillBuff: 0.1,
     playerId: null,
     playerStats: [
       { label: 'Level', name: 'level', value: 1 },
@@ -130,10 +145,11 @@ export default {
       { label: 'Pierce', name: 'pierce', value: 1 },
       { label: 'Armor', name: 'armor', value: 1 },
       { label: 'IDR', name: 'ignore_damage_reduction', value: 0 },
+      { label: 'Agony Resistance', name: 'agony_resistance', value: 0 },
+      { label: 'Puncture', name: 'puncture', value: 4 },
       { label: 'Min Damage', name: 'min_damage', value: 0 },
       { label: 'Max Damage', name: 'max_damage', value: 0 },
       { label: 'Damage', name: 'damage', value: 0 },
-      { label: 'Puncture', name: 'puncture', value: 4 },
       { label: 'Health Multi', name: 'health_multiplier', value: 1 },
     ],
     monsterStats: [
@@ -144,6 +160,7 @@ export default {
       { label: 'Pierce', name: 'pierce', value: 1 },
       { label: 'Armor', name: 'armor', value: 1 },
       { label: 'DR', name: 'damage_reduction', value: 0 },
+      { label: 'Agony', name: 'agony', value: 0 },
       { label: 'Puncture', name: 'puncture', value: 4 },
     ],
     presets,
@@ -168,6 +185,7 @@ export default {
     submit() {
       const body = new FormData(this.$refs.form);
       body.set('options[multikill]', this.multikill);
+      body.set('options[multikill_buff]', this.multikillBuff);
 
       if (this.playerId) {
         body.set('player[id]', this.playerId);
